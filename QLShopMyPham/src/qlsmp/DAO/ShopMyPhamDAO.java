@@ -15,8 +15,8 @@ import java.util.List;
 public abstract class ShopMyPhamDAO<EntityType, KeyType> {
     abstract public void insert(EntityType entity);
     abstract  public void update(EntityType entity);
-    abstract public void delete(KeyType id);
-    abstract public EntityType selecteByID(KeyType id);
+    abstract public void delete(int id);
+    abstract public EntityType selecteByID(int id);
     abstract public List<EntityType> selectAll();
     abstract public EntityType selectByKeyword(KeyType ten);
     abstract public List<EntityType> selectBySql(String sql, Object...args);

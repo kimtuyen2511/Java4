@@ -19,29 +19,29 @@ import qlsmp.DB.DBHelper;
  */
 public class SanPhamDAO extends ShopMyPhamDAO<SanPham, String> {
 
-    String INSERT_SQL = "INSERT INTO SANPHAM(TenSP,GiaBan,ThuongHieu,CongDung, ThanhPhan,HSD, Hinh,MaKho,MaLoai)Values(?,?,?,?,?,?,NULL,NULL,?)";
-    String UPDATE_SQL = "UPDATE SANPHAM SET TenSP=?,GiaBan=?,ThuongHieu=?,CongDung=?,ThanhPhan=?,HSD=?,MaLoai=? WHERE MaSP=?";
+    String INSERT_SQL = "INSERT INTO SANPHAM(TenSP,GiaBan,ThuongHieu,CongDung, ThanhPhan,HSD, Hinh,SoLuong,MaLoai)Values(?,?,?,?,?,?,?,NULL,?)";
+    String UPDATE_SQL = "UPDATE SANPHAM SET TenSP=?,GiaBan=?,ThuongHieu=?,CongDung=?,ThanhPhan=?,HSD=?,MaLoai=?,Hinh=? WHERE MaSP=?";
     String DELETE_SQL = "DELETE FROM SANPHAM WHERE MaSP=?";
     String SELECT_ALL_SQL = "SELECT * FROM SANPHAM";
     String SELECT_BY_ID_SQL = "SELECT * FROM SANPHAM WHERE MaSP=?";
 
     @Override
     public void insert(SanPham enity) {
-        DBHelper.update(INSERT_SQL, enity.getTensp(), enity.getGia(), enity.getThuongHieu(), enity.getCongDung(), enity.getThanhPhan(), enity.getHSD(),enity.getLoaiSP());
+        DBHelper.update(INSERT_SQL, enity.getTensp(), enity.getGia(), enity.getThuongHieu(), enity.getCongDung(), enity.getThanhPhan(), enity.getHSD(), enity.getHinh(),enity.getLoaiSP());
     }
 
     @Override
     public void update(SanPham enity) {
-        DBHelper.update(UPDATE_SQL, enity.getTensp(), enity.getGia(), enity.getThuongHieu(), enity.getCongDung(), enity.getThanhPhan(), enity.getHSD(), enity.getLoaiSP(), enity.getMaSP());
+        DBHelper.update(UPDATE_SQL, enity.getTensp(), enity.getGia(), enity.getThuongHieu(), enity.getCongDung(), enity.getThanhPhan(), enity.getHSD(), enity.getLoaiSP(), enity.getHinh(), enity.getMaSP());
     }
 
     @Override
-    public void delete(String id) {
+    public void delete(int id) {
         DBHelper.update(DELETE_SQL, id);
     }
 
     @Override
-    public SanPham selecteByID(String id) {
+    public SanPham selecteByID(int id) {
         List<SanPham> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
             return null;
@@ -80,21 +80,23 @@ public class SanPhamDAO extends ShopMyPhamDAO<SanPham, String> {
         Connection con = DBHelper.getDBConnection();
         String sql = "SELECT * FROM SANPHAM WHERE TenSP like N'" + keyword + "'";
         try {
-            Statement st = con.createStatement();
-            ResultSet rs = st.executeQuery(sql);
+            ResultSet rs = DBHelper.query(sql);
             while (rs.next()) {
-                SanPham cd = new SanPham();
-                cd.setMaSP(rs.getInt(1));
-                cd.setTensp(rs.getString(2));
-                cd.setGia(rs.getDouble(3));
-                cd.setThuongHieu(rs.getString(4));
-                cd.setCongDung(rs.getString(5));
-                cd.setThanhPhan(rs.getString(6));
-                cd.setHSD(rs.getString(7));
-                cd.setHinh(rs.getString(8));
-                return cd;
+                SanPham enity = new SanPham();
+                enity.setMaSP(rs.getInt("MaSP"));
+                enity.setTensp(rs.getString("TenSP"));
+                enity.setGia(rs.getDouble("GiaBan"));
+                enity.setThuongHieu(rs.getString("ThuongHieu"));
+                enity.setCongDung(rs.getString("CongDung"));
+                enity.setThanhPhan(rs.getString("ThanhPhan"));
+                enity.setHSD(rs.getString("HSD"));
+                enity.setHinh(rs.getString("Hinh"));
+                enity.setLoaiSP(rs.getInt("MaLoai"));
+                return enity;
             }
+            rs.getStatement().getConnection().close();
         } catch (Exception e) {
+            throw new RuntimeException(e);
         }
         return null;
     }

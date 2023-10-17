@@ -11,6 +11,8 @@ import java.util.Date;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import qldaotao.utis.Auth;
 
 /**
  *
@@ -39,6 +41,15 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
             }
         }
     }
+      public void opennQLSanPham(){
+        if (Auth.isLogin()) {
+            this.dispose();
+            new QLSanPham(this, true).setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập");
+        }
+    }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -459,8 +470,7 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_mnuHomeMouseClicked
 
     private void mniSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSanPhamActionPerformed
-        FormSP sp = new FormSP();
-        sp.setVisible(true);
+        this.opennQLSanPham();
     }//GEN-LAST:event_mniSanPhamActionPerformed
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed

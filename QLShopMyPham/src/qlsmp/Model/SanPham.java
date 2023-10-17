@@ -12,7 +12,7 @@ public class SanPham {
 
     private String tensp, thuongHieu, congDung, hinh, thanhPhan, HSD;
     private double gia;
-
+     private int soLuong, loaiSP, maSP;
     public int getMaSP() {
         return maSP;
     }
@@ -20,8 +20,7 @@ public class SanPham {
     public void setMaSP(int maSP) {
         this.maSP = maSP;
     }
-    private int soLuong,loaiSP,maSP;
-
+   
     public int getLoaiSP() {
         return loaiSP;
     }
@@ -33,8 +32,8 @@ public class SanPham {
     public SanPham() {
     }
 
-    public SanPham(int maSP, String tensp, double gia, String thuongHieu, String congDung, String thanhPhan, String HSD, String hinh, int soLuong,int loaiSP) {
-         this.maSP = maSP;
+    public SanPham(int maSP, String tensp, double gia, String thuongHieu, String congDung, String thanhPhan, String HSD, String hinh, int soLuong, int loaiSP) {
+        this.maSP = maSP;
         this.tensp = tensp;
         this.thuongHieu = thuongHieu;
         this.congDung = congDung;
@@ -69,7 +68,7 @@ public class SanPham {
     public void setSoLuong(int soLuong) {
         this.soLuong = soLuong;
     }
-    
+
     public String getTensp() {
         return tensp;
     }
