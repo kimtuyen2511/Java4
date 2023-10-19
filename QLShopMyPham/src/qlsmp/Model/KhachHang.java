@@ -9,21 +9,11 @@ package qlsmp.Model;
  * @author My Laptop
  */
 public class KhachHang {
+
     private int maKH;
-    private String tenKH, ngaySinh,diaChi, SDT,Email,gioiTinh;
-
-    public KhachHang() {
-    }
-
-    public KhachHang(int maKH, String tenKH, String ngaySinh, String diaChi, String SDT, String Email, String gioiTinh) {
-        this.maKH = maKH;
-        this.tenKH = tenKH;
-        this.ngaySinh = ngaySinh;
-        this.diaChi = diaChi;
-        this.SDT = SDT;
-        this.Email = Email;
-        this.gioiTinh = gioiTinh;
-    }
+    private String tenKH, ngaySinh, diaChi, SDT, Email;
+    private boolean gioiTinh;
+    private float tongTien;
 
     public int getMaKH() {
         return maKH;
@@ -73,13 +63,35 @@ public class KhachHang {
         this.Email = Email;
     }
 
-    public String getGioiTinh() {
+    public boolean getGioiTinh() {
+        System.out.println(gioiTinh);
         return gioiTinh;
     }
 
-    public void setGioiTinh(String gioiTinh) {
+    public void setGioiTinh(boolean gioiTinh) {
         this.gioiTinh = gioiTinh;
     }
-    
-    
+
+    public float getTongTien() {
+        return tongTien;
+    }
+
+    public void setTongTien(float tongTien) {
+        this.tongTien = tongTien;
+    }
+
+    public KhachHang(int maKH, String tenKH, String ngaySinh, String diaChi, String SDT, String Email, boolean gioiTinh, float tongTien) {
+        this.maKH = maKH;
+        this.tenKH = tenKH;
+        this.ngaySinh = ngaySinh;
+        this.diaChi = diaChi;
+        this.SDT = SDT;
+        this.Email = Email;
+        this.gioiTinh = gioiTinh;
+        this.tongTien = tongTien;
+    }
+
+    public KhachHang() {
+    }
+
 }
