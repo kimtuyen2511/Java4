@@ -35,7 +35,7 @@ public class NhanVienDAO {
 
     }
 
-    public NhanVien selectById(String id) {
+    public NhanVien selectById(int id) {
         List<NhanVien> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
             return null;
@@ -43,6 +43,7 @@ public class NhanVienDAO {
         return list.get(0);
     }
 
+     
     public List<NhanVien> selectAll() {
         return this.selectBySql(SELECT_ALL_SQL);
     }
@@ -53,7 +54,7 @@ public class NhanVienDAO {
             ResultSet rs = DBHelper.query(sql, args);
             while (rs.next()) {
                 NhanVien entity = new NhanVien();
-                entity.setMaNV(rs.getString("MaNV"));
+                entity.setMaNV(rs.getInt("MaNV"));
                 entity.setHoTen(rs.getString("TenNV"));
                 entity.setGioiTinh(rs.getBoolean("GioiTinh"));
                 entity.setNgaySinh(rs.getString("NgaySinh"));

@@ -15,6 +15,7 @@ import javax.swing.JSpinner;
 import javax.swing.SpinnerModel;
 import javax.swing.SpinnerNumberModel;
 import javax.swing.table.DefaultTableModel;
+import qldaotao.utis.Auth;
 import qldaotao.utis.XImage;
 import qlsmp.DAO.AccountDAO;
 import qlsmp.DAO.ChiTietDonHangDAO;
@@ -207,7 +208,7 @@ public class QLOrder extends javax.swing.JDialog implements Runnable {
 // xét thông tin đơn hàng thêm form
 
     public void clearForm() {
-        lblNguoiTao.setText("ThanhHieu");
+        lblNguoiTao.setText(Auth.user.getUsername());
         SetNgayTao();
         lblTongTien.setText(String.valueOf(0));
         txtKhuyenMai.setText(String.valueOf(0));
@@ -218,7 +219,7 @@ public class QLOrder extends javax.swing.JDialog implements Runnable {
 
     public void setForm() {
         DonHang hd = new DonHang();
-        lblNguoiTao.setText("ThanhHieu");
+        lblNguoiTao.setText(Auth.user.getUsername());
         SetNgayTao();
         int tongTien = 0;
         for (int row = 0; row < tblList.getRowCount(); row++) {

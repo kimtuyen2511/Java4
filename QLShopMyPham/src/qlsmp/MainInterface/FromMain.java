@@ -492,7 +492,7 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
-        FormDangNhap dn = new FormDangNhap();
+        Form_DangNhap dn = new Form_DangNhap();
         dn.setVisible(true);
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
@@ -501,7 +501,7 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_mniTroGiupActionPerformed
 
     private void mniDangXuat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuat2ActionPerformed
-        FormDangNhap dn = new FormDangNhap();
+        Form_DangNhap dn = new Form_DangNhap();
         dn.setVisible(true);
     }//GEN-LAST:event_mniDangXuat2ActionPerformed
 

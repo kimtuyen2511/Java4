@@ -10,7 +10,7 @@ package qlsmp.Model;
  */
 public class NhanVien {
 
-    private String maNV;
+    private int maNV;
     private String hoTen;
     private boolean gioiTinh;
     private String ngaySinh;
@@ -24,7 +24,7 @@ public class NhanVien {
         hinhAnh ="";
     }
 
-    public NhanVien(String maNV, String hoTen, boolean gioiTinh, String ngaySinh, String dienThoai, String diaChi, String CCCD, String Email, String hinhAnh) {
+    public NhanVien(int maNV, String hoTen, boolean gioiTinh, String ngaySinh, String dienThoai, String diaChi, String CCCD, String Email, String hinhAnh) {
         this.maNV = maNV;
         this.hoTen = hoTen;
         this.gioiTinh = gioiTinh;
@@ -36,11 +36,11 @@ public class NhanVien {
         this.hinhAnh = hinhAnh;
     }
 
-    public String getMaNV() {
+    public int getMaNV() {
         return maNV;
     }
 
-    public void setMaNV(String maNV) {
+    public void setMaNV(int maNV) {
         this.maNV = maNV;
     }
 

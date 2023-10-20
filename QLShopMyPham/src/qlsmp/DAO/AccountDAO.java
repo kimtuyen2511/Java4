@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
 package qlsmp.DAO;
 
 import java.sql.Connection;
@@ -12,27 +8,29 @@ import java.util.List;
 import qlsmp.DB.DBHelper;
 import qlsmp.Model.Account;
 
-/**
- *
- * @author My Laptop
- */
 public class AccountDAO extends ShopMyPhamDAO<Account, String> {
 
     String SELECT_ALL = "SELECT MaAccount,UserName,Pass,ChucVu,MaNV FROM ACCOUNT ";
-    // String UPDATE_SOLUONG = "UPDATE SANPHAM SET SoLuong=? WHERE MaSP=?";
-    String SELECT_BY_ID_SQL = "SELECT UserName,Pass,ChucVu,MaNV FROM SANPHAM WHERE MaAccount=?";
-
+    String INSERT_SQL = "INSERT INTO ACCOUNT(UserName,Pass,ChucVu,MaNV) VALUES (?,?,?,?)";
+    String DELETE_SQL = "DELETE ACCOUNT WHERE MaAccount = ?";
+    String UPDATE_SQL = "UPDATE ACCOUNT SET UserName=?, Pass=?, ChucVu=?, MaNV=? WHERE MaAccount=?";
+    String SELECT_BY_ID_SQL = "SELECT MaAccount,UserName,Pass,ChucVu,MaNV FROM ACCOUNT WHERE MaAccount=?";
+    String SELECT_BY_IDNV_SQL = "SELECT MaAccount,UserName,Pass,ChucVu,MaNV FROM ACCOUNT WHERE MaNV=?";
+    String SELECT_MA_TOP1_DESC = "SELECT TOP 1 MaAccount,UserName,Pass,ChucVu,MaNV FROM ACCOUNT ORDER BY MaAccount DESC";
+    String SELECT_BY_USERNAME_SQL = "SELECT MaAccount,UserName,Pass,ChucVu,MaNV FROM ACCOUNT WHERE UserName=?";
     @Override
     public void insert(Account enity) {
+        DBHelper.update(INSERT_SQL, enity.getUsername(), enity.getPass(), enity.isVaiTro(), enity.getMaNV());
     }
 
     @Override
     public void update(Account enity) {
-        //DBHelper.update(UPDATE_SOLUONG, enity.getSoLuong(), enity.getMaSP());
+        DBHelper.update(UPDATE_SQL, enity.getUsername(), enity.getPass(), enity.isVaiTro(), enity.getMaNV(), enity.getMaAccount());
     }
 
     @Override
     public void delete(int id) {
+        DBHelper.update(DELETE_SQL, id);
     }
 
     @Override
@@ -43,7 +41,23 @@ public class AccountDAO extends ShopMyPhamDAO<Account, String> {
         }
         return list.get(0);
     }
+    
+    public Account selecteByUsername (String username) {
+        List<Account> list = this.selectBySql(SELECT_BY_USERNAME_SQL, username);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 // để tìm kiếm
+
+    public Account selecteByMaNV(int id) {
+        List<Account> list = this.selectBySql(SELECT_BY_IDNV_SQL, id);
+        if (list.isEmpty()) {
+            return null;
+        }
+        return list.get(0);
+    }
 
     @Override
     public List<Account> selectBySql(String sql, Object... args) {
@@ -90,6 +104,21 @@ public class AccountDAO extends ShopMyPhamDAO<Account, String> {
     @Override
     public List<Account> selectAll() {
         return this.selectBySql(SELECT_ALL);
+    }
+
+    public int selectMaTop1DESC() {
+        try {
+            ResultSet rs = DBHelper.query(SELECT_MA_TOP1_DESC);
+            while (rs.next()) {
+                Account enity = new Account();
+                enity.setMaAccount(rs.getInt("MaAccount"));
+                return enity.getMaAccount();
+            }
+            rs.getStatement().getConnection().close();
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return 0;
     }
 
 }

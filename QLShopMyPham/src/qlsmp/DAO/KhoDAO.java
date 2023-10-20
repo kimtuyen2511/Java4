@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
- */
+
 package qlsmp.DAO;
 
 import java.sql.Connection;
@@ -54,6 +51,7 @@ public class KhoDAO extends ShopMyPhamDAO<SanPham, String> {
             ResultSet rs = DBHelper.query(sql, args);
             while (rs.next()) {
                 SanPham enity = new SanPham();
+                enity.setMaSP(rs.getInt("MaSP"));
                 enity.setTensp(rs.getString("TenSP"));
                 enity.setGia(rs.getDouble("GiaBan"));
                 enity.setSoLuong(rs.getInt("SoLuong"));

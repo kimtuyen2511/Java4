@@ -3636,7 +3636,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
-        FormDangNhap dn = new FormDangNhap();
+        Form_DangNhap dn = new Form_DangNhap();
         dn.setVisible(true);
     }//GEN-LAST:event_mniDangXuatActionPerformed
 

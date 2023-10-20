@@ -333,6 +333,12 @@ public class QLNhanVien extends javax.swing.JDialog {
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.LOWERED));
 
+        txtTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTimKiemActionPerformed(evt);
+            }
+        });
+
         btnTim.setBackground(new java.awt.Color(215, 229, 202));
         btnTim.setText("Tìm");
         btnTim.addActionListener(new java.awt.event.ActionListener() {
@@ -653,6 +659,10 @@ public class QLNhanVien extends javax.swing.JDialog {
         
     }//GEN-LAST:event_jMenu2ActionPerformed
 
+    private void txtTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTimKiemActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -782,7 +792,7 @@ public class QLNhanVien extends javax.swing.JDialog {
 
 //set du lieu vao form
     private void setForm(NhanVien nv) {
-        txtMaNV.setText(nv.getMaNV());
+        txtMaNV.setText(nv.getMaNV()+"");
         txtHoTen.setText(nv.getHoTen());
         if (nv.getGioiTinh() == false) {
             rdoNu.setSelected(true);
@@ -802,7 +812,7 @@ public class QLNhanVien extends javax.swing.JDialog {
 
     private NhanVien getForm() {
         NhanVien model = new NhanVien();
-        model.setMaNV(txtMaNV.getText());
+        model.setMaNV(Integer.parseInt(txtMaNV.getText()));
         model.setHoTen(txtHoTen.getText());
         if (rdoNu.isSelected() == true) {
             model.setGioiTinh(false);
@@ -877,7 +887,7 @@ public class QLNhanVien extends javax.swing.JDialog {
 
     private void edit() {
         try {
-            String maNV = (String) tblNhanVien.getValueAt(this.row, 0);
+            int maNV = (int) tblNhanVien.getValueAt(this.row, 0);
             NhanVien model = dao.selectById(maNV);
             if (model != null) {
                 setForm(model);
