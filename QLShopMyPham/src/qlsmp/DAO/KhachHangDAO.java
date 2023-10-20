@@ -12,30 +12,26 @@ import qlsmp.Model.KhachHang;
  *
  * @author My Laptop
  */
-public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
+public class KhachHangDAO {
 
     String SELECT_ALL = "SELECT MaKH,TenKH,GioiTinh,NgaySinh,DiaChi,SDT,EMAIL FROM KHACHHANG ";
     String UPDATE_SQL = "UPDATE KHACHHANG SET TenKH=?, GioiTinh=?, NgaySinh=?,DiaChi=?,SDT=?,EMAIL=? WHERE MaKH=?";
-    String INSERT_SQL = "INSERT INTO KHACHHANG(TenKH,GioiTinh,NgaySinh,DiaChi,SDT,EMAIL) VALUES(?,?,?,?,?,?)";
+    String INSERT_SQL = "SET IDENTITY_INSERT KHACHHANG ON; INSERT INTO KHACHHANG(MaKH,TenKH,GioiTinh,NgaySinh,DiaChi,SDT,EMAIL) VALUES(?,?,?,?,?,?,?)";
     String DELETE_SQL = "DELETE KHACHHANG WHERE MaKH=?";
-    String SELECT_BY_ID_SQL = "SELECT MaKH,TenKH,GioiTinh,NgaySinh,DiaChi,SDT,EMAIL FROM KHACHHANG WHERE MaKH=?";
+    String SELECT_BY_ID_SQL = "SELECT MaKH,TenKH,GioiTinh,NgaySinh,DiaChi,SDT,EMAIL  FROM KHACHHANG WHERE MaKH=?";
 
-    @Override
     public void insert(KhachHang enity) {
         DBHelper.update(INSERT_SQL, enity.getMaKH(), enity.getTenKH(), enity.getGioiTinh(), enity.getNgaySinh(), enity.getDiaChi(), enity.getSDT(), enity.getEmail());
     }
 
-    @Override
     public void update(KhachHang enity) {
         DBHelper.update(UPDATE_SQL, enity.getTenKH(), enity.getGioiTinh(), enity.getNgaySinh(), enity.getDiaChi(), enity.getSDT(), enity.getEmail(), enity.getMaKH());
     }
 
-    @Override
     public void delete(int id) {
         DBHelper.update(DELETE_SQL, id);
     }
 
-    @Override
     public KhachHang selecteByID(int id) {
         List<KhachHang> list = this.selectBySql(SELECT_BY_ID_SQL, id);
         if (list.isEmpty()) {
@@ -43,10 +39,8 @@ public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
         }
         return list.get(0);
     }
-
 // để tìm kiếm
 
-    @Override
     public List<KhachHang> selectBySql(String sql, Object... args) {
         List<KhachHang> list = new ArrayList<>();
         try {
@@ -55,7 +49,7 @@ public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
                 KhachHang enity = new KhachHang();
                 enity.setMaKH(rs.getInt("MaKH"));
                 enity.setTenKH(rs.getString("TenKH"));
-                enity.setGioiTinh(rs.getString("GioiTinh"));
+                enity.setGioiTinh(rs.getBoolean("GioiTinh"));
                 enity.setNgaySinh(rs.getString("NgaySinh"));
                 enity.setDiaChi(rs.getString("DiaChi"));
                 enity.setSDT(rs.getString("SDT"));
@@ -69,7 +63,6 @@ public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
         }
     }
 
-    @Override
     public KhachHang selectByKeyword(String keyword) {
         Connection con = DBHelper.getDBConnection();
         String sql = SELECT_ALL + " WHERE SDT like N'" + keyword + "'";
@@ -80,7 +73,7 @@ public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
                 KhachHang enity = new KhachHang();
                 enity.setMaKH(rs.getInt("MaKH"));
                 enity.setTenKH(rs.getString("TenKH"));
-                enity.setGioiTinh(rs.getString("GioiTinh"));
+                enity.setGioiTinh(rs.getBoolean("GioiTinh"));
                 enity.setNgaySinh(rs.getString("NgaySinh"));
                 enity.setDiaChi(rs.getString("DiaChi"));
                 enity.setSDT(rs.getString("SDT"));
@@ -92,7 +85,11 @@ public class KhachHangDAO extends ShopMyPhamDAO<KhachHang, String> {
         return null;
     }
 
-    @Override
+    public List<KhachHang> selectByKeyWord(String keyword) {
+        String sql = "SELECT * FROM KHACHHANG WHERE TenKH LIKE ?";
+        return this.selectBySql(sql, "%" + keyword + "%");
+    }
+
     public List<KhachHang> selectAll() {
         return this.selectBySql(SELECT_ALL);
     }

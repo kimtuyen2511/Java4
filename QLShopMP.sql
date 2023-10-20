@@ -207,26 +207,26 @@ VALUES
 SELECT * FROM KHACHHANG
 INSERT INTO KHACHHANG
 VALUES
-(N'Phạm Trí Phúc',N'Nam','2004-11-25',N'Cà Mau',0791234212,N'phucptpc05587@fpt.edu.vn'),
-(N'Dương Văn Kha',N'Nam','2004-05-28',N'Hậu Giang',0791234211,N'khadv05684@fpt.edu.vn'),
-(N'Phạm Minh Đức',N'Nam','2004-11-25',N'Cà Mau',0791234213,N'ducpmpc05567@fpt.edu.vn'),
-(N'Trần Ngọc Anh Thư',N'Nữ','2004-11-25',N'Cà Mau',0791234214,N'thutnapc05583@fpt.edu.vn'),
-(N'Hồ Thị Trúc Ly',N'Nữ','2004-11-25',N'Cà Mau',0791234216,N'lyhttpc05588@fpt.edu.vn'),
-(N'Hồ Trúc Ly',N'Nữ','2004-11-25',N'Cà Mau',0791234215,N'lytpc05587@fpt.edu.vn'),
-(N'Phan Văn Khánh',N'Nam','2004-11-25',N'Cà Mau',0791234217,N'khanhpvpc04226@fpt.edu.vn'),
-(N'Đặng Vĩnh Kỳ',N'Nam','2004-11-25',N'Cà Mau',0791234218,N'kydvpc05475@fpt.edu.vn'),
-(N'Nguyễn Vũ Đầy',N'Nam','2004-11-25',N'Cà Mau',0791234219,N'daynvpc05484@fpt.edu.vn'),
-(N'Võ Nhựt Duy',N'Nam','2004-11-25',N'Cà Mau',0791234222,N'duyvnpc05487@fpt.edu.vn'),
-(N'Lê Tuấn Kiệt',N'Nam','2004-11-25',N'Cà Mau',0791234232,N'kietltpc05503@fpt.edu.vn'),
-(N'Đinh Văn Phát',N'Nam','2004-11-25',N'Cà Mau',0791234242,N'phatdvpc05504@fpt.edu.vn'),
-(N'Trần Văn Nghĩa',N'Nam','2004-11-25',N'Cà Mau',0791234252,N'nghiatvpc05510@fpt.edu.vn'),
-(N'Trần Tô Phước Triều',N'Nam','2004-11-25',N'Cà Mau',0791234262,N'trieuttppc05514@fpt.edu.vn'),
-(N'Nguyễn Minh Triệu',N'Nam','2004-11-25',N'Cà Mau',0791234272,N'trieunmpc05519@fpt.edu.vn'),
-(N'Trần Nguyễn Đông Duy',N'Nam','2004-11-25',N'Cà Mau',0791234282,N'duytndpc05535@fpt.edu.vn'),
-(N'Tống Bình Phú',N'Nam','2004-11-25',N'Cà Mau',0791234292,N'phutbpc05547@fpt.edu.vn'),
-(N'Nguyễn Tuấn Khôi',N'Nam','2004-11-25',N'Cà Mau',0791235212,N'khointpc05548@fpt.edu.vn'),
-(N'Nguyễn Minh Khanh',N'Nam','2004-11-25',N'Cà Mau',0791236212,N'khanhnmpc05586@fpt.edu.vn'),
-(N'Thạch Hoài An',N'Nam','2004-11-25',N'Cà Mau',0791237212,N'anthpc05573@fpt.edu.vn')
+(N'Phạm Trí Phúc',N'1','2004-11-25',N'Cà Mau',0791234212,N'phucptpc05587@fpt.edu.vn'),
+(N'Dương Văn Kha',N'1','2004-05-28',N'Hậu Giang',0791234211,N'khadv05684@fpt.edu.vn'),
+(N'Phạm Minh Đức',N'1','2004-11-25',N'Cà Mau',0791234213,N'ducpmpc05567@fpt.edu.vn'),
+(N'Trần Ngọc Anh Thư',N'0','2004-11-25',N'Cà Mau',0791234214,N'thutnapc05583@fpt.edu.vn'),
+(N'Hồ Thị Trúc Ly',N'0','2004-11-25',N'Cà Mau',0791234216,N'lyhttpc05588@fpt.edu.vn'),
+(N'Hồ Trúc Ly',N'0','2004-11-25',N'Cà Mau',0791234215,N'lytpc05587@fpt.edu.vn'),
+(N'Phan Văn Khánh',N'1','2004-11-25',N'Cà Mau',0791234217,N'khanhpvpc04226@fpt.edu.vn'),
+(N'Đặng Vĩnh Kỳ',N'1','2004-11-25',N'Cà Mau',0791234218,N'kydvpc05475@fpt.edu.vn'),
+(N'Nguyễn Vũ Đầy',N'1','2004-11-25',N'Cà Mau',0791234219,N'daynvpc05484@fpt.edu.vn'),
+(N'Võ Nhựt Duy',N'1','2004-11-25',N'Cà Mau',0791234222,N'duyvnpc05487@fpt.edu.vn'),
+(N'Lê Tuấn Kiệt',N'1','2004-11-25',N'Cà Mau',0791234232,N'kietltpc05503@fpt.edu.vn'),
+(N'Đinh Văn Phát',N'1','2004-11-25',N'Cà Mau',0791234242,N'phatdvpc05504@fpt.edu.vn'),
+(N'Trần Văn Nghĩa',N'1','2004-11-25',N'Cà Mau',0791234252,N'nghiatvpc05510@fpt.edu.vn'),
+(N'Trần Tô Phước Triều',N'1','2004-11-25',N'Cà Mau',0791234262,N'trieuttppc05514@fpt.edu.vn'),
+(N'Nguyễn Minh Triệu',N'1','2004-11-25',N'Cà Mau',0791234272,N'trieunmpc05519@fpt.edu.vn'),
+(N'Trần Nguyễn Đông Duy',N'1','2004-11-25',N'Cà Mau',0791234282,N'duytndpc05535@fpt.edu.vn'),
+(N'Tống Bình Phú',N'1','2004-11-25',N'Cà Mau',0791234292,N'phutbpc05547@fpt.edu.vn'),
+(N'Nguyễn Tuấn Khôi',N'1','2004-11-25',N'Cà Mau',0791235212,N'khointpc05548@fpt.edu.vn'),
+(N'Nguyễn Minh Khanh',N'1','2004-11-25',N'Cà Mau',0791236212,N'khanhnmpc05586@fpt.edu.vn'),
+(N'Thạch Hoài An',N'1','2004-11-25',N'Cà Mau',0791237212,N'anthpc05573@fpt.edu.vn')
 
 
 --NHÂN VIÊN
