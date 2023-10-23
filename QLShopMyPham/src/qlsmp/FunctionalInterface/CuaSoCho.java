@@ -15,30 +15,32 @@ import javax.swing.Timer;
  */
 public class CuaSoCho extends javax.swing.JFrame {
 
-    /**
-     * Creates new form CuaSoCho
-     */
+    javax.swing.Timer t;
+
     public CuaSoCho() {
         initComponents();
         init();
     }
-  void init() {
+
+    void init() {
         setLocationRelativeTo(null);
         setTitle("QUẢN LÝ SHOP MỸ PHẨM");
-        this.getContentPane().setBackground(Color.WHITE);
-        new Timer (20, new ActionListener() {
-            @Override
+        setLocationRelativeTo(null);
+        ActionListener a = new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                int value = pgb.getValue();
-                if (value < 100) {
-                    pgb.setValue(value + 1);
-                    phanTram.setText(value+"%");
-                } else {
-                    CuaSoCho.this.dispose();
+                int value = pgb.getValue() + 1;
+                pgb.setValue(value <= 100 ? value : 0);
+                if (value > 100) {
+                    pgb.setValue(value);
+                    t.stop();
+                    dispose();
                 }
             }
-        }).start();
+        };
+        t = new javax.swing.Timer(10, a);
+        t.start();
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always

@@ -15,7 +15,7 @@ public class QLShopMyPham {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        BarChart br = new BarChart();
+        BarChartNam br = new BarChartNam();
                 br.setVisible(true);
     }
     

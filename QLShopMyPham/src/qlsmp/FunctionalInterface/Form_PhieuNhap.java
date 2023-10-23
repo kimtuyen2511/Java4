@@ -20,6 +20,7 @@ import qlsmp.DAO.CTPNDao;
 import qlsmp.DAO.KhoDAO;
 import qlsmp.DAO.PhieuNhapDAO;
 import qlsmp.DAO.SanPhamDAO;
+import qlsmp.MainInterface.FromMain;
 import qlsmp.Model.Account;
 import qlsmp.Model.CTPN;
 import qlsmp.Model.PhieuNhap;
@@ -156,7 +157,8 @@ public class Form_PhieuNhap extends javax.swing.JFrame implements Runnable {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản lý phiếu nhập");
 
         jPanel5.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -1089,6 +1091,16 @@ public class Form_PhieuNhap extends javax.swing.JFrame implements Runnable {
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Quản lý");
@@ -1213,6 +1225,16 @@ public class Form_PhieuNhap extends javax.swing.JFrame implements Runnable {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         deleteRow();
     }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+//         FromMain main = new FromMain();
+//        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+       FromMain main = new FromMain();
+        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments

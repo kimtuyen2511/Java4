@@ -18,14 +18,19 @@ import qldaotao.utis.Auth;
  *
  * @author My Laptop
  */
-public class FromMain extends javax.swing.JFrame implements Runnable{
+public class FromMain extends javax.swing.JFrame implements Runnable {
+
     /**
      * Creates new form FromMain
      */
     public FromMain() {
         initComponents();
-        
+        setLocationRelativeTo(null);
+
+        new CuaSoCho().setVisible(true);
+        new Form_DangNhap().setVisible(true);
     }
+
     @Override
     public void run() {
         while (true) {
@@ -39,14 +44,6 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
             } catch (Exception e) {
                 break;
             }
-        }
-    }
-      public void opennQLSanPham(){
-        if (Auth.isLogin()) {
-            this.dispose();
-            new QLSanPham(this, true).setVisible(true);
-        } else {
-            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập");
         }
     }
 
@@ -68,6 +65,7 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
         btnKhachHang = new qlsmp.MainInterface.CardMain();
         jToolBar1 = new javax.swing.JToolBar();
         mniDangXuat2 = new javax.swing.JButton();
+        mniDangXuat3 = new javax.swing.JButton();
         mniKetThuc2 = new javax.swing.JButton();
         mniHoaDon2 = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JToolBar.Separator();
@@ -196,13 +194,15 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
                 .addGap(26, 26, 26))
         );
 
-        jToolBar1.setBackground(new java.awt.Color(245, 245, 246));
+        jToolBar1.setBackground(new java.awt.Color(255, 255, 255));
         jToolBar1.setRollover(true);
 
         mniDangXuat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Log out.png"))); // NOI18N
         mniDangXuat2.setText("Đăng xuất");
         mniDangXuat2.setFocusable(false);
         mniDangXuat2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniDangXuat2.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniDangXuat2.setMinimumSize(new java.awt.Dimension(68, 60));
         mniDangXuat2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniDangXuat2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -211,10 +211,24 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
         });
         jToolBar1.add(mniDangXuat2);
 
+        mniDangXuat3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/login.png"))); // NOI18N
+        mniDangXuat3.setText("Đăng nhập");
+        mniDangXuat3.setFocusable(false);
+        mniDangXuat3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniDangXuat3.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        mniDangXuat3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDangXuat3ActionPerformed(evt);
+            }
+        });
+        jToolBar1.add(mniDangXuat3);
+
         mniKetThuc2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Stop.png"))); // NOI18N
         mniKetThuc2.setText("Kết thúc");
         mniKetThuc2.setFocusable(false);
         mniKetThuc2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniKetThuc2.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniKetThuc2.setMinimumSize(new java.awt.Dimension(68, 60));
         mniKetThuc2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniKetThuc2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -227,6 +241,8 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
         mniHoaDon2.setText("Hóa đơn");
         mniHoaDon2.setFocusable(false);
         mniHoaDon2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniHoaDon2.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniHoaDon2.setMinimumSize(new java.awt.Dimension(68, 60));
         mniHoaDon2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniHoaDon2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -245,6 +261,8 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
         mniKhoHang.setText("Kho hàng");
         mniKhoHang.setFocusable(false);
         mniKhoHang.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniKhoHang.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniKhoHang.setMinimumSize(new java.awt.Dimension(68, 60));
         mniKhoHang.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniKhoHang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -262,6 +280,8 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
         mniDoanhThu2.setText("Doanh thu");
         mniDoanhThu2.setFocusable(false);
         mniDoanhThu2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniDoanhThu2.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniDoanhThu2.setMinimumSize(new java.awt.Dimension(68, 60));
         mniDoanhThu2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniDoanhThu2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -278,8 +298,9 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
 
         mniTroGiup2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HuongDan.png"))); // NOI18N
         mniTroGiup2.setText("Trợ giúp");
-        mniTroGiup2.setFocusable(false);
         mniTroGiup2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        mniTroGiup2.setMaximumSize(new java.awt.Dimension(68, 60));
+        mniTroGiup2.setMinimumSize(new java.awt.Dimension(68, 60));
         mniTroGiup2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
         mniTroGiup2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -440,12 +461,12 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }// </editor-fold>//GEN-END:initComponents
 
     private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
-        // TODO add your handling code here:
+        opennQLKhachHang();
     }//GEN-LAST:event_mniKhachHangActionPerformed
 
     private void mniHoaDon2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mniHoaDon2MouseClicked
 
-        
+
     }//GEN-LAST:event_mniHoaDon2MouseClicked
 
     private void mniKhoHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_mniKhoHangMouseClicked
@@ -474,30 +495,27 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_mniSanPhamActionPerformed
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
-        // TODO add your handling code here:
+        opennQLNhanVien();
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     private void mniKhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoActionPerformed
-       QLKho kho = new QLKho();
-        kho.setVisible(true);
+        opennQLKho();
     }//GEN-LAST:event_mniKhoActionPerformed
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        // TODO add your handling code here:
+        opennQLHoaDon();
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
-         FormDoanhThu dt = new FormDoanhThu();
-        dt.setVisible(true);
+        opennQLDoanhThu();
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
-        Form_DangNhap dn = new Form_DangNhap();
-        dn.setVisible(true);
+        openDangXuat();
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void mniTroGiupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTroGiupActionPerformed
-        // TODO add your handling code here:
+        opennTroGiup();
     }//GEN-LAST:event_mniTroGiupActionPerformed
 
     private void mniDangXuat2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuat2ActionPerformed
@@ -510,21 +528,19 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_mniKetThuc2ActionPerformed
 
     private void mniHoaDon2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDon2ActionPerformed
-        // TODO add your handling code here:
+        opennQLHoaDon();
     }//GEN-LAST:event_mniHoaDon2ActionPerformed
 
     private void mniKhoHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoHangActionPerformed
-        QLKho kho = new QLKho();
-        kho.setVisible(true);
+        opennQLKho();
     }//GEN-LAST:event_mniKhoHangActionPerformed
 
     private void mniDoanhThu2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThu2ActionPerformed
-        FormDoanhThu dt = new FormDoanhThu();
-        dt.setVisible(true);
+        opennQLDoanhThu();
     }//GEN-LAST:event_mniDoanhThu2ActionPerformed
 
     private void mniTroGiup2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTroGiup2ActionPerformed
-        // TODO add your handling code here:
+        opennTroGiup();
     }//GEN-LAST:event_mniTroGiup2ActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -533,29 +549,33 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     }//GEN-LAST:event_formWindowOpened
 
     private void btnSanPhamMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnSanPhamMouseClicked
-        // TODO add your handling code here:
+        opennQLSanPham();
     }//GEN-LAST:event_btnSanPhamMouseClicked
 
     private void btnMuaHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnMuaHangMouseClicked
-        // TODO add your handling code here:
+        openDoanhThu(0);
     }//GEN-LAST:event_btnMuaHangMouseClicked
 
     private void btnKhachHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnKhachHangMouseClicked
-        // TODO add your handling code here:
+        opennQLKhachHang();
     }//GEN-LAST:event_btnKhachHangMouseClicked
 
     private void btnNhapHangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhapHangMouseClicked
-        // TODO add your handling code here:
+        openDoanhThu(1);
+
     }//GEN-LAST:event_btnNhapHangMouseClicked
 
     private void btnNhanVienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnNhanVienMouseClicked
-        // TODO add your handling code here:
+        opennQLNhanVien();
     }//GEN-LAST:event_btnNhanVienMouseClicked
 
     private void btnDoanhThuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnDoanhThuMouseClicked
-        // TODO add your handling code here:
+        opennQLDoanhThu();
     }//GEN-LAST:event_btnDoanhThuMouseClicked
 
+    private void mniDangXuat3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuat3ActionPerformed
+        new Form_DangNhap().setVisible(true);
+    }//GEN-LAST:event_mniDangXuat3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -612,6 +632,7 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     private javax.swing.JLabel lblNgay;
     private javax.swing.JMenuItem mniDangXuat;
     private javax.swing.JButton mniDangXuat2;
+    private javax.swing.JButton mniDangXuat3;
     private javax.swing.JMenuItem mniDoanhThu;
     private javax.swing.JButton mniDoanhThu2;
     private javax.swing.JMenuItem mniHoaDon;
@@ -631,4 +652,86 @@ public class FromMain extends javax.swing.JFrame implements Runnable{
     private javax.swing.JMenu mnuThongKe;
     private javax.swing.JMenu mnuTrogiup;
     // End of variables declaration//GEN-END:variables
+
+    private void openKetThuc() {
+        System.exit(0);
+    }
+
+    private void openDangXuat() {
+        Form_DangNhap dn = new Form_DangNhap();
+        dn.setVisible(true);
+    }
+
+    public void opennQLSanPham() {
+//        new QLSanPham().setVisible(true);
+        if (Auth.isLogin()) {
+            new QLSanPham().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLNhanVien() {
+//        new QLNhanVien().setVisible(true);
+        if (Auth.isLogin()) {
+            new QLNhanVien().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKho() {
+        if (Auth.isLogin()) {
+            new QLKho().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLHoaDon() {
+//        new QLHoaDon().setVisible(true);
+        if (Auth.isLogin()) {
+            new QLHoaDon().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLDoanhThu() {
+//        new FormDoanhThu().setVisible(true);
+        if (Auth.isLogin()) {
+            new FormDoanhThu().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKhachHang() {
+//        new QLKhachHang().setVisible(true);
+
+        if (Auth.isLogin()) {
+            new QLKhachHang().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennTroGiup() {
+        JOptionPane.showMessageDialog(this, "Đang được cập nhật");
+    }
+
+    private void openDoanhThu(int index) {
+        if (Auth.isLogin()) {
+            FormDoanhThu thongKeWindow = new FormDoanhThu();
+            thongKeWindow.setVisible(true);
+            thongKeWindow.selecTab(index);
+
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void openNhapHang() {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
 }

@@ -7,21 +7,22 @@ package qlsmp.FunctionalInterface;
 import java.util.List;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import qldaotao.utis.Auth;
 import qldaotao.utis.XImage;
 import qlsmp.DAO.KhachHangDAO;
+import qlsmp.MainInterface.FromMain;
 import qlsmp.Model.KhachHang;
 
 /**
  *
  * @author Anh Thu
  */
-public class QLKhachHang extends javax.swing.JDialog {
+public class QLKhachHang extends javax.swing.JFrame {
 
     KhachHangDAO dao = new KhachHangDAO();
     int row = -1;
 
-    public QLKhachHang(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public QLKhachHang() {
         initComponents();
         init();
     }
@@ -53,7 +54,7 @@ public class QLKhachHang extends javax.swing.JDialog {
         txtNgaySinh = new javax.swing.JTextField();
         txtDiaChi = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
-        txtTongTien1 = new javax.swing.JTextField();
+        txtEmail = new javax.swing.JTextField();
         btnFirst = new javax.swing.JButton();
         btnPrev = new javax.swing.JButton();
         btnNext = new javax.swing.JButton();
@@ -72,11 +73,21 @@ public class QLKhachHang extends javax.swing.JDialog {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        mniNhanVien = new javax.swing.JMenuItem();
+        mniKho = new javax.swing.JMenuItem();
+        mniHoaDon = new javax.swing.JMenuItem();
+        mniKhachHang = new javax.swing.JMenuItem();
+        mniSanPham1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        mniDoanhThu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mniDangXuat = new javax.swing.JMenuItem();
+        mniKetThuc = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        mniTroGiup = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản lý khách hàng");
 
         jPanel6.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -163,9 +174,9 @@ public class QLKhachHang extends javax.swing.JDialog {
 
         jLabel12.setText("Email");
 
-        txtTongTien1.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTongTien1ActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
@@ -189,7 +200,7 @@ public class QLKhachHang extends javax.swing.JDialog {
                     .addComponent(txtSDT)
                     .addComponent(txtNgaySinh)
                     .addComponent(txtDiaChi)
-                    .addComponent(txtTongTien1))
+                    .addComponent(txtEmail))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -222,7 +233,7 @@ public class QLKhachHang extends javax.swing.JDialog {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtTongTien1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -442,18 +453,110 @@ public class QLKhachHang extends javax.swing.JDialog {
         );
 
         jMenuBar1.setOpaque(true);
+
+        jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Quản lý");
+
+        mniNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_24.png"))); // NOI18N
+        mniNhanVien.setText("Quản lý Nhân Viên");
+        mniNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNhanVienActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniNhanVien);
+
+        mniKho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boxes.png"))); // NOI18N
+        mniKho.setText("Quản lý Kho");
+        mniKho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKhoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniKho);
+
+        mniHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/List.png"))); // NOI18N
+        mniHoaDon.setText("Quản lý Hóa đơn");
+        mniHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniHoaDonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniHoaDon);
+
+        mniKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        mniKhachHang.setText("Quản lý Khách hàng");
+        mniKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKhachHangActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniKhachHang);
+
+        mniSanPham1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Numbered list.png"))); // NOI18N
+        mniSanPham1.setText("Quản lý Sản phẩm");
+        mniSanPham1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSanPham1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniSanPham1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Thống kê");
+
+        mniDoanhThu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Bar chart.png"))); // NOI18N
+        mniDoanhThu.setText("Doanh thu");
+        mniDoanhThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDoanhThuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mniDoanhThu);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Hệ thống");
+
+        mniDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Log out.png"))); // NOI18N
+        mniDangXuat.setText("Đăng Xuất");
+        mniDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDangXuatActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mniDangXuat);
+
+        mniKetThuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Stop.png"))); // NOI18N
+        mniKetThuc.setText("Kết thúc");
+        mniKetThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKetThucActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mniKetThuc);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Trợ giúp");
+
+        mniTroGiup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HuongDan.png"))); // NOI18N
+        mniTroGiup.setText("Trợ giúp");
+        mniTroGiup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniTroGiupActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mniTroGiup);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -515,9 +618,9 @@ public class QLKhachHang extends javax.swing.JDialog {
         edit();
     }//GEN-LAST:event_tblKhachHangMouseClicked
 
-    private void txtTongTien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTongTien1ActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTongTien1ActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         insert();
@@ -542,6 +645,47 @@ public class QLKhachHang extends javax.swing.JDialog {
     private void btnLastActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastActionPerformed
         last();
     }//GEN-LAST:event_btnLastActionPerformed
+
+    private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
+        this.opennQLNhanVien();
+    }//GEN-LAST:event_mniNhanVienActionPerformed
+
+    private void mniKhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoActionPerformed
+        this.opennQLKho();
+    }//GEN-LAST:event_mniKhoActionPerformed
+
+    private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
+        this.opennQLHoaDon();
+    }//GEN-LAST:event_mniHoaDonActionPerformed
+
+    private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
+        this.opennQLKhachHang();
+    }//GEN-LAST:event_mniKhachHangActionPerformed
+
+    private void mniSanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSanPham1ActionPerformed
+        this.opennQLSanPham();
+    }//GEN-LAST:event_mniSanPham1ActionPerformed
+
+    private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
+        this.opennQLDoanhThu();
+    }//GEN-LAST:event_mniDoanhThuActionPerformed
+
+    private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
+        openDangXuat();
+    }//GEN-LAST:event_mniDangXuatActionPerformed
+
+    private void mniKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKetThucActionPerformed
+        openKetThuc();
+    }//GEN-LAST:event_mniKetThucActionPerformed
+
+    private void mniTroGiupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTroGiupActionPerformed
+        this.opennTroGiup();
+    }//GEN-LAST:event_mniTroGiupActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+         FromMain main = new FromMain();
+        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -570,18 +714,17 @@ public class QLKhachHang extends javax.swing.JDialog {
         }
         //</editor-fold>
         //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
 
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                QLKhachHang dialog = new QLKhachHang(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new QLHoaDon().setVisible(true);
             }
         });
     }
@@ -617,16 +760,25 @@ public class QLKhachHang extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane9;
+    private javax.swing.JMenuItem mniDangXuat;
+    private javax.swing.JMenuItem mniDoanhThu;
+    private javax.swing.JMenuItem mniHoaDon;
+    private javax.swing.JMenuItem mniKetThuc;
+    private javax.swing.JMenuItem mniKhachHang;
+    private javax.swing.JMenuItem mniKho;
+    private javax.swing.JMenuItem mniNhanVien;
+    private javax.swing.JMenuItem mniSanPham1;
+    private javax.swing.JMenuItem mniTroGiup;
     private javax.swing.JRadioButton rdoNam;
     private javax.swing.JRadioButton rdoNu;
     private javax.swing.JTable tblKhachHang;
     private javax.swing.JTextField txtDiaChi;
+    private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtHoTen;
     private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtNgaySinh;
     private javax.swing.JTextField txtSDT;
     private javax.swing.JTextField txtTimKiem;
-    private javax.swing.JTextField txtTongTien1;
     // End of variables declaration//GEN-END:variables
  private void init() {
         setLocationRelativeTo(null);
@@ -634,7 +786,70 @@ public class QLKhachHang extends javax.swing.JDialog {
 
         this.fillToTable();
         this.row = -1;
-//        this.updateStatus();
+        this.updateStatus();
+    }
+
+    private void openKetThuc() {
+        System.exit(0);
+    }
+
+    private void openDangXuat() {
+        Form_DangNhap dn = new Form_DangNhap();
+        dn.setVisible(true);
+    }
+
+    public void opennQLSanPham() {
+        if (Auth.isLogin()) {
+            new QLSanPham().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLNhanVien() {
+        if (Auth.isLogin()) {
+            new QLNhanVien().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKho() {
+        if (Auth.isLogin()) {
+            QLKho kho = new QLKho();
+            kho.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLHoaDon() {
+        if (Auth.isLogin()) {
+            new QLHoaDon();
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLDoanhThu() {
+        if (Auth.isLogin()) {
+            FormDoanhThu dt = new FormDoanhThu();
+            dt.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKhachHang() {
+        if (Auth.isLogin()) {
+            new QLKhachHang().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennTroGiup() {
+        JOptionPane.showMessageDialog(this, "Đang được cập nhật");
     }
 
     private void fillToTable() {
@@ -748,6 +963,7 @@ public class QLKhachHang extends javax.swing.JDialog {
         txtMaKH.setText(String.valueOf(nv.getMaKH()));
         txtNgaySinh.setText(nv.getNgaySinh());
         txtSDT.setText(nv.getSDT());
+        txtEmail.setText(nv.getEmail());
         rdoNam.setSelected(nv.getGioiTinh());
         rdoNu.setSelected(!nv.getGioiTinh());
     }
@@ -759,26 +975,28 @@ public class QLKhachHang extends javax.swing.JDialog {
         model.setNgaySinh(txtNgaySinh.getText());
         model.setSDT(txtSDT.getText());
         model.setDiaChi(txtDiaChi.getText());
-        model.setEmail(txtTongTien1.getText());
+        model.setEmail(txtEmail.getText());
+
+        if (rdoNam.isSelected()) {
+            model.setGioiTinh(true);
+        } else {
+            model.setGioiTinh(false);
+        }
         return model;
     }
 
     private void updateStatus() {
-        boolean edit = this.row >= 0; //edit = những hàng > 0 (true)
-        boolean first = this.row == 0; //first = hàng 0 (false)
-        boolean last = (this.row == tblKhachHang.getRowCount() - 1); // last = row được chọn (true, false tùy)
+        boolean edit = this.row >= 0;
+        boolean first = this.row == 0;
+        boolean last = (this.row == tblKhachHang.getRowCount() - 1);
 
-        txtMaKH.setEditable(!edit); //không cho chỉnh sửa mã nv khi row > 0
-        //khi insert thì k update
-        btnThem.setEnabled(!edit); // không cho bấm nút thêm khi row > 0
-        btnSua.setEnabled(edit); // cho chỉnh sửa khi row >0
-        btnXoa.setEnabled(edit); // cho xóa khi row > 0
+        txtMaKH.setEditable(!edit);
+        btnThem.setEnabled(!edit);
+        btnSua.setEnabled(edit);
+        btnXoa.setEnabled(edit);
 
-        //cho bấm first khi row > 0 và row != 0       
         btnFirst.setEnabled(edit && !first);
-        //cho bấm prev khi row > 0 và row !=0
         btnPrev.setEnabled(edit && !first);
-        //cho bấm tùy thuộc 
         btnNext.setEnabled(edit && !last);
         btnLast.setEnabled(edit && !last);
 

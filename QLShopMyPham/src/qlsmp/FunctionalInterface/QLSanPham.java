@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.swing.ImageIcon;
 import javax.swing.JFileChooser;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
@@ -24,7 +25,7 @@ import qlsmp.Model.SanPham;
  *
  * @author My Laptop
  */
-public class QLSanPham extends javax.swing.JDialog implements Runnable {
+public class QLSanPham extends javax.swing.JFrame implements Runnable {
 
     public List<SanPham> list = new ArrayList<>();
     public SanPhamDAO dao = new SanPhamDAO();
@@ -38,8 +39,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
     /**
      * Creates new form QLSanPham
      */
-    public QLSanPham(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+    public QLSanPham() {
         initComponents();
         init();
     }
@@ -427,8 +427,8 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         jLabel130 = new javax.swing.JLabel();
         thuongHieu7 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        btnNextDS = new javax.swing.JButton();
         btnPrevDS = new javax.swing.JButton();
+        btnNextNDS = new javax.swing.JButton();
         btnLastDS = new javax.swing.JButton();
         btnFirstDS = new javax.swing.JButton();
         PanelTrangDiem = new javax.swing.JPanel();
@@ -659,6 +659,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         mniTroGiup = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản lý sản phẩm");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1204,17 +1205,17 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
 
-        btnNextDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
-        btnNextDS.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnNextDSActionPerformed(evt);
-            }
-        });
-
         btnPrevDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prev.png"))); // NOI18N
         btnPrevDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevDSActionPerformed(evt);
+            }
+        });
+
+        btnNextNDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
+        btnNextNDS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNextNDSActionPerformed(evt);
             }
         });
 
@@ -1240,9 +1241,9 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
                 .addGap(50, 50, 50)
                 .addComponent(btnFirstDS)
                 .addGap(18, 18, 18)
-                .addComponent(btnNextDS)
-                .addGap(18, 18, 18)
                 .addComponent(btnPrevDS)
+                .addGap(18, 18, 18)
+                .addComponent(btnNextNDS)
                 .addGap(18, 18, 18)
                 .addComponent(btnLastDS)
                 .addContainerGap(50, Short.MAX_VALUE))
@@ -1254,8 +1255,8 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(btnFirstDS)
                     .addComponent(btnLastDS)
-                    .addComponent(btnPrevDS)
-                    .addComponent(btnNextDS))
+                    .addComponent(btnNextNDS)
+                    .addComponent(btnPrevDS))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -1304,9 +1305,8 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
                             .addComponent(pnel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(PanelDSSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(PanelDSSPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(pnel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(pnel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(pnel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(pnel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(pnel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(pnel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 63, Short.MAX_VALUE)
@@ -3400,7 +3400,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(cbxHSD, 0, 1, Short.MAX_VALUE))
                                     .addComponent(jScrollPane1))))
-                        .addContainerGap())
+                        .addGap(20, 20, 20))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, PanelThongTinSPLayout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(hinhMD, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -3475,6 +3475,11 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         Home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 HomeMouseClicked(evt);
+            }
+        });
+        Home.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                HomeActionPerformed(evt);
             }
         });
         jMenuBar1.add(Home);
@@ -3610,42 +3615,39 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
     }//GEN-LAST:event_HomeMouseClicked
 
     private void mniSanPhamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSanPhamActionPerformed
-
+        opennQLSanPham();
     }//GEN-LAST:event_mniSanPhamActionPerformed
 
     private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
-
+        opennQLNhanVien();
     }//GEN-LAST:event_mniNhanVienActionPerformed
 
     private void mniKhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoActionPerformed
-        QLKho kho = new QLKho();
-        kho.setVisible(true);
+        opennQLKho();
     }//GEN-LAST:event_mniKhoActionPerformed
 
     private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
-        // TODO add your handling code here:
+        opennQLHoaDon();
     }//GEN-LAST:event_mniHoaDonActionPerformed
 
     private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
-
+        opennQLKhachHang();
     }//GEN-LAST:event_mniKhachHangActionPerformed
 
     private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
-        FormDoanhThu dt = new FormDoanhThu();
-        dt.setVisible(true);
+        opennQLDoanhThu();
     }//GEN-LAST:event_mniDoanhThuActionPerformed
 
     private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
-        Form_DangNhap dn = new Form_DangNhap();
-        dn.setVisible(true);
+        openDangXuat();
     }//GEN-LAST:event_mniDangXuatActionPerformed
 
     private void mniKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKetThucActionPerformed
-        System.exit(0);
+        openKetThuc();
     }//GEN-LAST:event_mniKetThucActionPerformed
 
     private void mniTroGiupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTroGiupActionPerformed
-        // TODO add your handling code here:
+        opennTroGiup();
     }//GEN-LAST:event_mniTroGiupActionPerformed
 
     private void pnel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pnel2MouseClicked
@@ -3679,17 +3681,6 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         this.FillPageSP();
     }//GEN-LAST:event_btnFirstDSActionPerformed
 
-    private void btnNextDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextDSActionPerformed
-        this.clearPageDS(pnel1, pnel2, pnel3, pnel4, pnel5, pnel6, pnel7, pnel8);
-        this.page++;
-        int maxPage = (int) Math.floor(list.size() / 8) + 1;
-        if (this.page > maxPage) {
-            this.page = maxPage;
-            System.out.println("maxpage" + maxPage);
-        }
-        this.FillPageSP();
-    }//GEN-LAST:event_btnNextDSActionPerformed
-
     private void btnPrevDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevDSActionPerformed
         this.clearPageDS(pnel1, pnel2, pnel3, pnel4, pnel5, pnel6, pnel7, pnel8);
         this.page--;
@@ -3699,6 +3690,18 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         }
         this.FillPageSP();
     }//GEN-LAST:event_btnPrevDSActionPerformed
+
+    private void btnNextNDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextNDSActionPerformed
+
+        this.clearPageDS(pnel1, pnel2, pnel3, pnel4, pnel5, pnel6, pnel7, pnel8);
+        this.page++;
+        int maxPage = (int) Math.floor(list.size() / 8) + 1;
+        if (this.page > maxPage) {
+            this.page = maxPage;
+            System.out.println("maxpage" + maxPage);
+        }
+        this.FillPageSP();
+    }//GEN-LAST:event_btnNextNDSActionPerformed
 
     private void btnLastDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLastDSActionPerformed
         this.clearPageDS(pnel1, pnel2, pnel3, pnel4, pnel5, pnel6, pnel7, pnel8);
@@ -3998,6 +4001,11 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         clearForm();
     }//GEN-LAST:event_btnClearFormActionPerformed
 
+    private void HomeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_HomeActionPerformed
+        FromMain main = new FromMain();
+        main.setVisible(true);
+    }//GEN-LAST:event_HomeActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4028,14 +4036,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
         /* Create and display the dialog */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                QLSanPham dialog = new QLSanPham(new javax.swing.JFrame(), true);
-                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-                    @Override
-                    public void windowClosing(java.awt.event.WindowEvent e) {
-                        System.exit(0);
-                    }
-                });
-                dialog.setVisible(true);
+                new QLSanPham().setVisible(true);
             }
         });
     }
@@ -4060,7 +4061,7 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
     private javax.swing.JButton btnLastNH;
     private javax.swing.JButton btnLastTD;
     private javax.swing.JButton btnNextCSD;
-    private javax.swing.JButton btnNextDS;
+    private javax.swing.JButton btnNextNDS;
     private javax.swing.JButton btnNextNH;
     private javax.swing.JButton btnNextTD;
     private javax.swing.JButton btnPrevCSD;
@@ -4332,4 +4333,67 @@ public class QLSanPham extends javax.swing.JDialog implements Runnable {
     private javax.swing.JTextArea txtThanhPhan;
     private javax.swing.JTextField txtThuongHieu;
     // End of variables declaration//GEN-END:variables
+
+    private void openKetThuc() {
+        System.exit(0);
+    }
+
+    private void openDangXuat() {
+        Form_DangNhap dn = new Form_DangNhap();
+        dn.setVisible(true);
+    }
+
+    public void opennQLSanPham() {
+        if (Auth.isLogin()) {
+            new QLSanPham().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLNhanVien() {
+        if (Auth.isLogin()) {
+            new QLNhanVien().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKho() {
+        if (Auth.isLogin()) {
+            QLKho kho = new QLKho();
+            kho.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLHoaDon() {
+        if (Auth.isLogin()) {
+            new QLHoaDon();
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLDoanhThu() {
+        if (Auth.isLogin()) {
+            FormDoanhThu dt = new FormDoanhThu();
+            dt.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKhachHang() {
+        if (Auth.isLogin()) {
+            new QLKhachHang().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennTroGiup() {
+        JOptionPane.showMessageDialog(this, "Đang được cập nhật");
+    }
 }

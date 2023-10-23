@@ -10,8 +10,11 @@ import java.util.List;
 import javax.swing.BorderFactory;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import qldaotao.utis.Auth;
 import qlsmp.DAO.KhoDAO;
+import qlsmp.MainInterface.FromMain;
 import qlsmp.Model.SanPham;
 
 /**
@@ -19,7 +22,7 @@ import qlsmp.Model.SanPham;
  * @author My Laptop
  */
 public class QLKho extends javax.swing.JFrame implements Runnable {
-    
+
     List<SanPham> list = new ArrayList<>();
     public int page = 1;
     KhoDAO dao = new KhoDAO();
@@ -31,7 +34,7 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         initComponents();
         init();
     }
-    
+
     void init() {
         setLocationRelativeTo(null);
         setTitle("Quản lý kho");
@@ -146,11 +149,21 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jMenu2 = new javax.swing.JMenu();
+        mniNhanVien = new javax.swing.JMenuItem();
+        mniKho = new javax.swing.JMenuItem();
+        mniHoaDon = new javax.swing.JMenuItem();
+        mniKhachHang = new javax.swing.JMenuItem();
+        mniSanPham1 = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
+        mniDoanhThu = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
+        mniKetThuc = new javax.swing.JMenuItem();
+        mniDangXuat = new javax.swing.JMenuItem();
         jMenu5 = new javax.swing.JMenu();
+        mniTroGiup = new javax.swing.JMenuItem();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Quản lý kho");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -950,14 +963,14 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
             }
         });
 
-        btnPrevDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prev.png"))); // NOI18N
+        btnPrevDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
         btnPrevDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPrevDSActionPerformed(evt);
             }
         });
 
-        btnNextDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/next.png"))); // NOI18N
+        btnNextDS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/prev.png"))); // NOI18N
         btnNextDS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnNextDSActionPerformed(evt);
@@ -1088,18 +1101,108 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Quản lý");
+
+        mniNhanVien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/user_24.png"))); // NOI18N
+        mniNhanVien.setText("Quản lý Nhân Viên");
+        mniNhanVien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniNhanVienActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniNhanVien);
+
+        mniKho.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/boxes.png"))); // NOI18N
+        mniKho.setText("Quản lý Kho");
+        mniKho.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKhoActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniKho);
+
+        mniHoaDon.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/List.png"))); // NOI18N
+        mniHoaDon.setText("Quản lý Hóa đơn");
+        mniHoaDon.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniHoaDonActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniHoaDon);
+
+        mniKhachHang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/add.png"))); // NOI18N
+        mniKhachHang.setText("Quản lý Khách hàng");
+        mniKhachHang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKhachHangActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniKhachHang);
+
+        mniSanPham1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Numbered list.png"))); // NOI18N
+        mniSanPham1.setText("Quản lý Sản phẩm");
+        mniSanPham1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniSanPham1ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(mniSanPham1);
+
         jMenuBar1.add(jMenu2);
 
         jMenu3.setText("Thống kê");
+
+        mniDoanhThu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Bar chart.png"))); // NOI18N
+        mniDoanhThu.setText("Doanh thu");
+        mniDoanhThu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDoanhThuActionPerformed(evt);
+            }
+        });
+        jMenu3.add(mniDoanhThu);
+
         jMenuBar1.add(jMenu3);
 
         jMenu4.setText("Hệ thống");
+
+        mniKetThuc.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Stop.png"))); // NOI18N
+        mniKetThuc.setText("Kết thúc");
+        mniKetThuc.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniKetThucActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mniKetThuc);
+
+        mniDangXuat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Log out.png"))); // NOI18N
+        mniDangXuat.setText("Đăng Xuất");
+        mniDangXuat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniDangXuatActionPerformed(evt);
+            }
+        });
+        jMenu4.add(mniDangXuat);
+
         jMenuBar1.add(jMenu4);
 
         jMenu5.setText("Trợ giúp");
+
+        mniTroGiup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/HuongDan.png"))); // NOI18N
+        mniTroGiup.setText("Trợ giúp");
+        mniTroGiup.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                mniTroGiupActionPerformed(evt);
+            }
+        });
+        jMenu5.add(mniTroGiup);
+
         jMenuBar1.add(jMenu5);
 
         setJMenuBar(jMenuBar1);
@@ -1148,7 +1251,7 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         } catch (Exception e) {
         }
     }
-    
+
     public void clear(JPanel pnel, JLabel hinh, JLabel ten, JLabel gia, JLabel sl, JLabel lblGia, JLabel lblKho) {
         pnel.setBorder(null);
         pnel.setSize(160, 188);
@@ -1160,7 +1263,7 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         lblGia.setText(null);
         lblKho.setText(null);
     }
-    
+
     public void clearPage() {
         clear(pnel1, hinh1, ten1, gia1, sl1, lblgia1, lblKho1);
         clear(pnel2, hinh2, ten2, gia2, sl2, lblgia2, lblKho2);
@@ -1187,7 +1290,7 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
 //        pnel11.setVisible(false);
 //        pnel12.setVisible(false);
     }
-    
+
     public void setHinhAnh(String path, JLabel hinh) {
         ImageIcon img = new ImageIcon(getClass().getResource("/img/" + path));
         Image image = img.getImage();
@@ -1195,7 +1298,7 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
                 Image.SCALE_SMOOTH);
         hinh.setIcon(new ImageIcon(image2));
     }
-    
+
     public void FillPageSP() {
         int vitri = 0;
         list = dao.selectAll();
@@ -1229,12 +1332,12 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
             }
         }
     }
-    
+
     public void getForm(String ten) {
         SanPham sp = dao.selectByKeyword(ten);
         FillSP(sp, pnel1, hinh1, ten1, gia1, sl1, lblgia1, lblKho1);
     }
-    
+
     @Override
     public void run() {
         while (true) {
@@ -1260,21 +1363,22 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
 
     private void btnNextDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextDSActionPerformed
         clearPage();
-        this.page++;
-        int maxPage = (int) Math.floor(list.size() / 8);
-        if (this.page > maxPage) {
-            this.page = maxPage;
-            System.out.println("maxpage" + maxPage);
+        this.page--;
+        System.out.println("prevp" + page);
+        if (this.page < 1) {
+            this.page = 1;
         }
         this.FillPageSP();
     }//GEN-LAST:event_btnNextDSActionPerformed
 
     private void btnPrevDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPrevDSActionPerformed
+
         clearPage();
-        this.page--;
-        System.out.println("prevp" + page);
-        if (this.page < 1) {
-            this.page = 1;
+        this.page++;
+        int maxPage = (int) Math.floor(list.size() / 8);
+        if (this.page > maxPage) {
+            this.page = maxPage;
+            System.out.println("maxpage" + maxPage);
         }
         this.FillPageSP();
     }//GEN-LAST:event_btnPrevDSActionPerformed
@@ -1297,6 +1401,47 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
         Thread clock = new Thread(this);
         clock.start();
     }//GEN-LAST:event_formWindowOpened
+
+    private void mniNhanVienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniNhanVienActionPerformed
+        this.opennQLNhanVien();
+    }//GEN-LAST:event_mniNhanVienActionPerformed
+
+    private void mniKhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhoActionPerformed
+        this.opennQLKho();
+    }//GEN-LAST:event_mniKhoActionPerformed
+
+    private void mniHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniHoaDonActionPerformed
+        this.opennQLHoaDon();
+    }//GEN-LAST:event_mniHoaDonActionPerformed
+
+    private void mniKhachHangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKhachHangActionPerformed
+        this.opennQLKhachHang();
+    }//GEN-LAST:event_mniKhachHangActionPerformed
+
+    private void mniSanPham1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniSanPham1ActionPerformed
+        this.opennQLSanPham();
+    }//GEN-LAST:event_mniSanPham1ActionPerformed
+
+    private void mniDoanhThuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDoanhThuActionPerformed
+        this.opennQLDoanhThu();
+    }//GEN-LAST:event_mniDoanhThuActionPerformed
+
+    private void mniKetThucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniKetThucActionPerformed
+        openKetThuc();
+    }//GEN-LAST:event_mniKetThucActionPerformed
+
+    private void mniDangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniDangXuatActionPerformed
+        openDangXuat();
+    }//GEN-LAST:event_mniDangXuatActionPerformed
+
+    private void mniTroGiupActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_mniTroGiupActionPerformed
+        this.opennTroGiup();
+    }//GEN-LAST:event_mniTroGiupActionPerformed
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        FromMain main = new FromMain();
+        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1398,6 +1543,15 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel lblgia7;
     private javax.swing.JLabel lblgia8;
     private javax.swing.JLabel lblgia9;
+    private javax.swing.JMenuItem mniDangXuat;
+    private javax.swing.JMenuItem mniDoanhThu;
+    private javax.swing.JMenuItem mniHoaDon;
+    private javax.swing.JMenuItem mniKetThuc;
+    private javax.swing.JMenuItem mniKhachHang;
+    private javax.swing.JMenuItem mniKho;
+    private javax.swing.JMenuItem mniNhanVien;
+    private javax.swing.JMenuItem mniSanPham1;
+    private javax.swing.JMenuItem mniTroGiup;
     private javax.swing.JPanel pnel1;
     private javax.swing.JPanel pnel10;
     private javax.swing.JPanel pnel11;
@@ -1436,4 +1590,67 @@ public class QLKho extends javax.swing.JFrame implements Runnable {
     private javax.swing.JLabel ten9;
     private javax.swing.JTextField txtSearch;
     // End of variables declaration//GEN-END:variables
+
+    private void openKetThuc() {
+        System.exit(0);
+    }
+
+    private void openDangXuat() {
+        Form_DangNhap dn = new Form_DangNhap();
+        dn.setVisible(true);
+    }
+
+    public void opennQLSanPham() {
+        if (Auth.isLogin()) {
+            new QLSanPham().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLNhanVien() {
+        if (Auth.isLogin()) {
+            new QLNhanVien().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKho() {
+        if (Auth.isLogin()) {
+            QLKho kho = new QLKho();
+            kho.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLHoaDon() {
+        if (Auth.isLogin()) {
+            new QLHoaDon();
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLDoanhThu() {
+        if (Auth.isLogin()) {
+            FormDoanhThu dt = new FormDoanhThu();
+            dt.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennQLKhachHang() {
+        if (Auth.isLogin()) {
+            new QLKhachHang().setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(this, "Vui lòng đăng nhập.");
+        }
+    }
+
+    private void opennTroGiup() {
+        JOptionPane.showMessageDialog(this, "Đang được cập nhật");
+    }
 }
