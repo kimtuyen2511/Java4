@@ -20,12 +20,12 @@ import qlsmp.Model.HoaDon;
 public class HoaDonDAO extends ShopMyPhamDAO<HoaDon, String> {
 
     String SELECT_ALL = "SELECT MaHD, NgayTao, NguoiTao, TongTien, Sale, ThanhTien, MaKH FROM HOADON ";
-    String INSERT_SQL ="INSERT INTO HOADON(MaHD,NgayTao, NguoiTao, TongTien, Sale, ThanhTien, MaKH) VALUES(?,?,?,?,?,?,?)";
+    String INSERT_SQL = "INSERT INTO HOADON(MaHD,NgayTao, NguoiTao, TongTien, Sale, ThanhTien, MaKH) VALUES(?,?,?,?,?,?,?)";
     String SELECT_BY_ID_SQL = "SELECT NgayTao, NguoiTao, TongTien, Sale, ThanhTien, MaKH FROM SANPHAM WHERE MaHD=?";
 
     @Override
     public void insert(HoaDon enity) {
-        DBHelper.update(INSERT_SQL, enity.getMaHD(),enity.getNgayTao(), enity.getNguoiTao(),enity.getTongTien(),enity.getSale(), enity.getThanhTien(), enity.getMaKH());
+        DBHelper.update(INSERT_SQL, enity.getMaHD(), enity.getNgayTao(), enity.getNguoiTao(), enity.getTongTien(), enity.getSale(), enity.getThanhTien(), enity.getMaKH());
     }
 
     @Override
@@ -47,6 +47,7 @@ public class HoaDonDAO extends ShopMyPhamDAO<HoaDon, String> {
         return list.get(0);
     }
 // để tìm kiếm
+
     @Override
     public List<HoaDon> selectBySql(String sql, Object... args) {
         List<HoaDon> list = new ArrayList<>();
@@ -57,9 +58,9 @@ public class HoaDonDAO extends ShopMyPhamDAO<HoaDon, String> {
                 enity.setMaHD(rs.getInt("MaHD"));
                 enity.setNgayTao(rs.getString("NgayTao"));
                 enity.setNguoiTao(rs.getString("NguoiTao"));
-                enity.setTongTien(rs.getInt("TongTien"));
+                enity.setTongTien(rs.getFloat("TongTien"));
                 enity.setSale(rs.getDouble("Sale"));
-                enity.setThanhTien(rs.getInt("ThanhTien"));
+                enity.setThanhTien(rs.getFloat("ThanhTien"));
                 enity.setMaKH(rs.getInt("MaKH"));
                 list.add(enity);
             }
@@ -82,4 +83,59 @@ public class HoaDonDAO extends ShopMyPhamDAO<HoaDon, String> {
         return this.selectBySql(SELECT_ALL);
     }
 
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
+        try {
+            List<Object[]> list = new ArrayList<>();
+            ResultSet rs = DBHelper.query(sql, args);
+            while (rs.next()) {
+                Object[] vals = new Object[cols.length];
+                for (int i = 0; i < cols.length; i++) {
+                    vals[i] = rs.getObject(cols[i]);
+                }
+                list.add(vals);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException();
+        }
+    }
+
+    public List<Object[]> getHoaDonTheoNam(String date) {
+        String sql = "{CALL sp_HoaDonTheoNam(?)}";
+        String[] cols = {"MaHD", "NgayTao", "NguoiTao", "TongTien", "Sale", "ThanhTien", "MaKH"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<Object[]> getHoaDonTheoThang(String date) {
+        String sql = "{CALL sp_HoaDonTheoThang(?)}";
+        String[] cols = {"MaHD", "NgayTao", "NguoiTao", "TongTien", "Sale", "ThanhTien", "MaKH"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<Object[]> getHoaDonTheoNgay(String date) {
+        String sql = "{CALL sp_HoaDonTheoNgay(?)}";
+        String[] cols = {"MaHD", "NgayTao", "NguoiTao", "TongTien", "Sale", "ThanhTien", "MaKH"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<Object[]> getHoaDonBHTheoThang(String date) {
+        String sql = "{CALL doanhThu_Thang(?)}";
+        String[] cols = {"MaHD", "NgayTao", "NguoiTao", "TongTien"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<Object[]> getHoaDonBHTheoNam(String date) {
+        String sql = "{CALL doanhThu_Nam(?)}";
+        String[] cols = {"MaHD", "NgayTao", "NguoiTao", "TongTien"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+
+    public List<HoaDon> selectNgayNhap(String date) {
+        String sql = "SELECT * from HOADON WHERE NgayTao = '";
+        sql += date + "'";
+        return this.selectBySql(sql);
+    }
 }

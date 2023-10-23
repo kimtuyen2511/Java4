@@ -1,4 +1,3 @@
-
 package qlsmp.FunctionalInterface;
 
 import java.awt.Color;
@@ -13,6 +12,7 @@ import javax.swing.JPanel;
 import javax.swing.table.DefaultTableModel;
 import qldaotao.utis.XImage;
 import qlsmp.DAO.KhoDAO;
+import qlsmp.MainInterface.FromMain;
 import qlsmp.Model.SanPham;
 
 /**
@@ -34,10 +34,11 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
     void init() {
         this.setIconImage(XImage.getApplcon());
         setLocationRelativeTo(null);
+
+        this.FillPageSP();
+
         setTitle("Trang Order sản phẩm");
         this.getContentPane().setBackground(Color.WHITE);
-        this.FillPageSP();
-        //model.setRowCount(0);
     }
 
     @Override
@@ -71,7 +72,7 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
         setHinhAnh(sp.getHinh(), hinh);
         ten.setText(sp.getTensp());
         gia.setText(sp.getGia() + "");
-        SlKho.setText(sp.getSoLuong()+"");
+        SlKho.setText(sp.getSoLuong() + "");
     }
 
     public void FillPageSP() {
@@ -228,7 +229,8 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
         jMenu4 = new javax.swing.JMenu();
         jMenu5 = new javax.swing.JMenu();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Form order");
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
@@ -1191,6 +1193,16 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
         );
 
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
+        jMenu1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu1MouseClicked(evt);
+            }
+        });
+        jMenu1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenu1ActionPerformed(evt);
+            }
+        });
         jMenuBar1.add(jMenu1);
 
         jMenu2.setText("Quản lý");
@@ -1270,7 +1282,7 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
 
     private void btnNextDSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNextDSActionPerformed
         if (page == 1) {
-            //   FillChamSocDa();
+//               FillChamSocDa()/;
         } else if (page == 2) {
             //  FillNuocHoa();
         }
@@ -1292,6 +1304,16 @@ public class FormOrder extends javax.swing.JFrame implements Runnable {
         Thread clock = new Thread(this);
         clock.start();
     }//GEN-LAST:event_formWindowOpened
+
+    private void jMenu1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu1MouseClicked
+//        FromMain main = new FromMain();
+//        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1MouseClicked
+
+    private void jMenu1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu1ActionPerformed
+        FromMain main = new FromMain();
+        main.setVisible(true);
+    }//GEN-LAST:event_jMenu1ActionPerformed
 
     /**
      * @param args the command line arguments

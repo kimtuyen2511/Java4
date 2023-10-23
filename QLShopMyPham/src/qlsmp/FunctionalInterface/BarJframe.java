@@ -31,6 +31,8 @@ public class BarJframe extends javax.swing.JFrame {
     public BarJframe() {
         initComponents();
         ShowBarChart();
+        setLocationRelativeTo(null);
+
     }
 
     public void ShowBarChart() {
@@ -39,41 +41,41 @@ public class BarJframe extends javax.swing.JFrame {
         dataset.addValue(200, "Chi phí", "Tháng 1");
         dataset.addValue(220, "Chi phí", "Tháng 2");
         dataset.addValue(300, "Chi phí", "Tháng 3");
-        dataset.addValue(500,"Chi phí","Tháng 4");
-        dataset.addValue(600,"Chi phí","Tháng 5");
-        dataset.addValue(220,"Chi phí","Tháng 6");
-        dataset.addValue(200,"Chi phí","Tháng 7");
-        dataset.addValue(100,"Chi phí","Tháng 8");
-        dataset.addValue(120,"Chi phí","Tháng 9");
-        dataset.addValue(230,"Chi phí","Tháng 10");
-        dataset.addValue(400,"Chi phí","Tháng 11");
-        dataset.addValue(120,"Chi phí","Tháng 12");
+        dataset.addValue(500, "Chi phí", "Tháng 4");
+        dataset.addValue(600, "Chi phí", "Tháng 5");
+        dataset.addValue(220, "Chi phí", "Tháng 6");
+        dataset.addValue(200, "Chi phí", "Tháng 7");
+        dataset.addValue(100, "Chi phí", "Tháng 8");
+        dataset.addValue(120, "Chi phí", "Tháng 9");
+        dataset.addValue(230, "Chi phí", "Tháng 10");
+        dataset.addValue(400, "Chi phí", "Tháng 11");
+        dataset.addValue(120, "Chi phí", "Tháng 12");
 
         dataset.addValue(240, "Doanh thu", "Tháng 1");
         dataset.addValue(280, "Doanh thu", "Tháng 2");
         dataset.addValue(350, "Doanh thu", "Tháng 3");
-        dataset.addValue(570 ,"Doanh thu","Tháng 4");
-        dataset.addValue(660 ,"Doanh thu","Tháng 5");
-        dataset.addValue(280 ,"Doanh thu","Tháng 6");
-        dataset.addValue(270 ,"Doanh thu","Tháng 7");
-        dataset.addValue(150 ,"Doanh thu","Tháng 8");
-        dataset.addValue(190 ,"Doanh thu","Tháng 9");
-        dataset.addValue(300 ,"Doanh thu","Tháng 10");
-        dataset.addValue(480 ,"Doanh thu","Tháng 11");
-        dataset.addValue(190 ,"Doanh thu","Tháng 12");
+        dataset.addValue(570, "Doanh thu", "Tháng 4");
+        dataset.addValue(660, "Doanh thu", "Tháng 5");
+        dataset.addValue(280, "Doanh thu", "Tháng 6");
+        dataset.addValue(270, "Doanh thu", "Tháng 7");
+        dataset.addValue(150, "Doanh thu", "Tháng 8");
+        dataset.addValue(190, "Doanh thu", "Tháng 9");
+        dataset.addValue(300, "Doanh thu", "Tháng 10");
+        dataset.addValue(480, "Doanh thu", "Tháng 11");
+        dataset.addValue(190, "Doanh thu", "Tháng 12");
 
         dataset.addValue(40, "Lợi nhuận", "Tháng 1");
         dataset.addValue(70, "Lợi nhuận", "Tháng 2");
         dataset.addValue(50, "Lợi nhuận", "Tháng 3");
-        dataset.addValue(70 ,"Lợi nhuận","Tháng 4");
-        dataset.addValue(60 ,"Lợi nhuận","Tháng 5");
-        dataset.addValue(60 ,"Lợi nhuận","Tháng 6");
-        dataset.addValue(70 ,"Lợi nhuận","Tháng 7");
-        dataset.addValue(50 ,"Lợi nhuận","Tháng 8");
-        dataset.addValue(70 ,"Lợi nhuận","Tháng 9");
-        dataset.addValue(70 ,"Lợi nhuận","Tháng 10");
-        dataset.addValue(80 ,"Lợi nhuận","Tháng 11");
-        dataset.addValue(70 ,"Lợi nhuận","Tháng 12");
+        dataset.addValue(70, "Lợi nhuận", "Tháng 4");
+        dataset.addValue(60, "Lợi nhuận", "Tháng 5");
+        dataset.addValue(60, "Lợi nhuận", "Tháng 6");
+        dataset.addValue(70, "Lợi nhuận", "Tháng 7");
+        dataset.addValue(50, "Lợi nhuận", "Tháng 8");
+        dataset.addValue(70, "Lợi nhuận", "Tháng 9");
+        dataset.addValue(70, "Lợi nhuận", "Tháng 10");
+        dataset.addValue(80, "Lợi nhuận", "Tháng 11");
+        dataset.addValue(70, "Lợi nhuận", "Tháng 12");
 
         // creat chart
         chart = ChartFactory.createBarChart3D("Biểu đồ doanh thu Shop Mỹ Phẩm năm 2022", "", "triệu VND", dataset, PlotOrientation.VERTICAL, true, true, false);
@@ -85,7 +87,7 @@ public class BarJframe extends javax.swing.JFrame {
         chartPanel = new ChartPanel(chart);
         chartPanel.setMouseWheelEnabled(true);
 
-       // jPanel1.removeAll();
+        // jPanel1.removeAll();
         jPanel1.setLayout(new BorderLayout());
         jPanel1.setPreferredSize(new Dimension(1094, 449));
         jPanel1.add(chartPanel, BorderLayout.CENTER);

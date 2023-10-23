@@ -87,4 +87,40 @@ public class PhieuNhapDAO extends ShopMyPhamDAO<PhieuNhap, String> {
         return 0;
     }
 
+    private List<Object[]> getListOfArray(String sql, String[] cols, Object... args) {
+        try {
+            List<Object[]> list = new ArrayList<>();
+            ResultSet rs = DBHelper.query(sql, args);
+            while (rs.next()) {
+                Object[] vals = new Object[cols.length];
+                for (int i = 0; i < cols.length; i++) {
+                    vals[i] = rs.getObject(cols[i]);
+                }
+                list.add(vals);
+            }
+            rs.getStatement().getConnection().close();
+            return list;
+        } catch (Exception e) {
+            System.out.println(e);
+            throw new RuntimeException();
+        }
+    }
+
+    public List<Object[]> getHoaDonNHTheoThang(String date) {
+        String sql = "{CALL PhieuNhap_Thang(?)}";
+        String[] cols = {"MaPN", "NgayTao", "NguoiTao", "ThanhTien", "MaAccount"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<Object[]> getHoaDonNHTheoNam(String date) {
+        String sql = "{CALL PhieuNhap_Nam(?)}";
+        String[] cols = {"MaPN", "NgayTao", "NguoiTao", "ThanhTien", "MaAccount"};
+        return this.getListOfArray(sql, cols, date);
+    }
+
+    public List<PhieuNhap> selectNgayNhap(String date) {
+        String sql = "select * from PHIEUNHAP WHERE NgayTao = '";
+        sql += date + "'";
+        return this.selectBySql(sql);
+    }
 }

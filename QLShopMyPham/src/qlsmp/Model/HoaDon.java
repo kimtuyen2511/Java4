@@ -12,7 +12,8 @@ import qlsmp.DAO.*;
  */
 public class HoaDon {
 
-    private int maHD, maKH, tongTien, ThanhTien;
+    private int maHD, maKH;
+    private float ThanhTien, tongTien;
     private double sale;
     private String ngayTao, NguoiTao;
 
@@ -20,7 +21,7 @@ public class HoaDon {
     public HoaDon() {
     }
 
-    public HoaDon(int maHD, int maKH, int tongTien, int ThanhTien, double sale, String ngayTao, String NguoiTao) {
+    public HoaDon(int maHD, int maKH, float tongTien,  float ThanhTien, double sale, String ngayTao, String NguoiTao) {
         this.maHD = maHD;
         this.maKH = maKH;
         this.tongTien = tongTien;
@@ -46,19 +47,19 @@ public class HoaDon {
         this.maKH = maKH;
     }
 
-    public int getTongTien() {
+    public float getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(int tongTien) {
+    public void setTongTien(float tongTien) {
         this.tongTien = tongTien;
     }
 
-    public int getThanhTien() {
+    public float getThanhTien() {
         return ThanhTien;
     }
 
-    public void setThanhTien(int ThanhTien) {
+    public void setThanhTien(float ThanhTien) {
         this.ThanhTien = ThanhTien;
     }
 

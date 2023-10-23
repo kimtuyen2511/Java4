@@ -14,7 +14,7 @@ public class Form_DangNhap extends javax.swing.JFrame {
 
     public Form_DangNhap() {
         initComponents();
-
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -36,7 +36,7 @@ public class Form_DangNhap extends javax.swing.JFrame {
         tbnCancel = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Login");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
@@ -49,8 +49,6 @@ public class Form_DangNhap extends javax.swing.JFrame {
         jLabel3.setText("Username:");
 
         jLabel4.setText("Password:");
-
-        txtPass.setText("jPasswordField1");
 
         btnDangNhap.setBackground(new java.awt.Color(153, 255, 153));
         btnDangNhap.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N

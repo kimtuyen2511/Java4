@@ -44,7 +44,8 @@ public class FormDoiMK extends javax.swing.JFrame {
         btnHuy = new javax.swing.JButton();
         txtUser = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Đổi mật khẩu");
 
         jLabel1.setBackground(new java.awt.Color(255, 255, 255));
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/nenDoiMK.jpg"))); // NOI18N
@@ -57,13 +58,9 @@ public class FormDoiMK extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(0, 102, 102));
         jLabel3.setText("ĐỔI MẬT KHẨU");
 
-        txtPassMoi.setText("jPasswordField1");
-
         jLabel4.setText("Mật khẩu mới:");
 
         jLabel5.setText("Xác nhận mật khẩu:");
-
-        txtPassXN.setText("jPasswordField1");
 
         btnDongY.setBackground(new java.awt.Color(115, 213, 213));
         btnDongY.setText("Đồng ý");
